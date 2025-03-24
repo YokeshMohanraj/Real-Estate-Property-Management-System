@@ -1,0 +1,55 @@
+<template>
+  <template if:true={loader}>
+    <lightning-spinner alternative-text="Loading..." size="small"></lightning-spinner>
+  </template>
+   <!-- New Button -->
+   <lightning-card>
+    <div class="slds-align_absolute-center">
+      <lightning-button label="New" onclick={navigateToNewRecordPage}>
+      </lightning-button>
+    </div>
+    <!-- Filters -->
+    <div class=" slds-grid slds-gutters slds-m-around_small">
+      <div class=" slds-size_1-of-4 slds-col">
+        <lightning-input type="text" label="Rent Price Range (0-)" name='price'
+          onchange={handleInputChange}></lightning-input>
+      </div>
+      <div class=" slds-size_1-of-4 slds-col">
+        <lightning-combobox name="Availabity status" label="Availabity status" value={value}
+          placeholder="Select the status" options={availibityoptions} onchange={handleInputChange}></lightning-combobox>
+      </div>
+      <div class=" slds-size_1-of-4 slds-col">
+        <lightning-combobox name="Furnishing Status" label="Furnishing Status" options={furnishingoptions} value={value}
+          onchange={handleInputChange}></lightning-combobox>
+      </div>
+      <div class=" slds-size_1-of-4 slds-col">
+        <lightning-input type="text" label="Near by distance(Kms)" name='distance'
+          onchange={handleInputChange}></lightning-input>
+      </div>
+    </div>
+    <!-- Filter Button -->
+    <div class="slds-align_absolute-center slds-p-around_medium lgc-bgs">
+      <lightning-button label="Filter" variant="brand" onclick={onFilterButtonClick}>
+      </lightning-button>
+    </div>
+    <!-- Data Table -->
+    <lightning-datatable key-field="Id" data={properties} columns={columns} hide-checkbox-column>
+    </lightning-datatable>
+
+    <template if:true={isDisplayNoRecords}>
+      <div class="slds-align_absolute-center">
+        <br />
+        No records found
+      </div>
+    </template>
+    <!-- Pagination -->
+    <div class="slds-m-around_large slds-align_absolute-center">
+      <lightning-button label="Previous" onclick={handlePrevious} disabled={_disablePrevious}>
+      </lightning-button>
+      <div class="slds-m-around_medium ">
+        <lightning-button label="Next" onclick={handleNext} disabled={_disableNext}>
+        </lightning-button>
+      </div>
+    </div>
+  </lightning-card>
+</template>
