@@ -1,0 +1,11 @@
+<template>
+    <lightning-card title="Property Location">
+        <template if:true={mapMarkers}>
+            <lightning-map map-markers={mapMarkers} zoom-level="15" markers-title="Property Location">
+            </lightning-map>
+        </template>
+        <template if:true={error}>
+            <p>Error: {error.message}</p>
+        </template>
+    </lightning-card>
+</template>
